@@ -8,7 +8,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "src/index.html", // to import index.html file inside index.js
+      template: "src/index.html",
     }),
   ],
   devServer: {
@@ -16,11 +16,28 @@ module.exports = {
   },
   module: {
     rules: [
+      // {
+      //   test: /\.(js|jsx|ts|tsx)$/, // .js and .jsx files
+      //   exclude: /node_modules/, // excluding the node_modules folder
+      //   use: {
+      //     loader: "babel-loader",
+      //   },
+      // },
       {
-        test: /\.(js|jsx)$/, // .js and .jsx files
-        exclude: /node_modules/, // excluding the node_modules folder
-        use: {
-          loader: "babel-loader",
+        test: /\.js$/,
+        loader: "esbuild-loader",
+        options: {
+          loader: "jsx", // Remove this if you're not using JSX
+          target: "es2015", // Syntax to compile to (see options below for possible values)
+        },
+      },
+      {
+        test: /\.tsx?$/,
+        loader: "esbuild-loader",
+        options: {
+          loader: "tsx", // Or 'ts' if you don't need tsx
+          target: "es2015",
+          // tsconfigRaw: require("../tsconfig.json"),
         },
       },
       {

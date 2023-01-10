@@ -1,3 +1,4 @@
+import React, { PureComponent } from 'react';
 import SendMessageForm from './SendMessageForm';
 import MessageContainer from './MessageContainer';
 import ConnectedUsers from './ConnectedUsers';
